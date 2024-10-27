@@ -29,7 +29,7 @@ CACHE_TIME = int(environ.get('CACHE_TIME', 9999))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 PICS = (environ.get('PICS' ,'https://envs.sh/AOQ.jpg')).split()
 NOR_IMG = environ.get('NOR_IMG', "https://envs.sh/PvY.jpg")
-SPELL_IMG = environ.get('SPELL_IMG', "https://graph.org/file/70f66b2e3279e7b1bed5e.jpg")
+SPELL_IMG = environ.get('SPELL_IMG', "https://envs.sh/AOI.jpg")
 BOT_START_TIME = time()
 
 # Admins, Channels & Users
