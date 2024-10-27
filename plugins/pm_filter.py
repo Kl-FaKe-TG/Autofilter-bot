@@ -137,7 +137,7 @@ async def pm_next_page(bot, query):
     if not files:
         return
     
-    btn = [[InlineKeyboardButton(text=f"📁 {get_size(file.file_size)} 🔺 {file.file_name}", callback_data=f'pmfile#{file.file_id}')] for file in files ]
+    btn = [[InlineKeyboardButton(text=f"🗃 {get_size(file.file_size)} {file.file_name}", callback_data=f'pmfile#{file.file_id}')] for file in files ]
                 
     if 0 < offset <= 10:
         off_set = 0
@@ -199,7 +199,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁 {get_size(file.file_size)} 🔺 {file.file_name}", callback_data=f'files#{nxreq}#{file.file_id}'
+                    text=f"🗃 {get_size(file.file_size)} {file.file_name}", callback_data=f'files#{nxreq}#{file.file_id}'
                 ),
             ]
             for file in files
@@ -211,7 +211,7 @@ async def next_page(bot, query):
                     text=f"{file.file_name}", callback_data=f'files#{nxreq}#{file.file_id}'
                 ),
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
+                    text=f"🗃 {get_size(file.file_size)}",
                     callback_data=f'files#{nxreq}#{file.file_id}',
                 ),
             ]
@@ -1336,7 +1336,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁 {get_size(file.file_size)} 🔺 {file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}'
+                    text=f"🗃 {get_size(file.file_size)} {file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}'
                 ),
             ]
             for file in files
@@ -1345,11 +1345,11 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"🔺 {file.file_name}",
+                    text=f"{file.file_name}",
                     callback_data=f'{pre}#{req}#{file.file_id}',
                 ),
                 InlineKeyboardButton(
-                    text=f"📁 {get_size(file.file_size)}",
+                    text=f"🗃 {get_size(file.file_size)}",
                     callback_data=f'{pre}#{req}#{file.file_id}',
                 ),
             ]
@@ -1357,13 +1357,13 @@ async def auto_filter(client, msg, spoll=False):
         ]
     btn.insert(0, 
         [
-            InlineKeyboardButton(f'🔍  {search} ', 'dupe')
+            InlineKeyboardButton(f'🌟 {search} 🌟', 'dupe')
         ]
     )
     btn.insert(1,
         [
-            InlineKeyboardButton("⦿ 𝖢𝗁𝖾𝖼𝗄 𝖡𝗈𝗍 𝖯𝗆 ", url=f"https://t.me/{temp.U_NAME}"),
-            InlineKeyboardButton(" 𝖬𝗈𝗏𝗂𝖾 𝖴𝗉𝖽𝖺𝗍𝖾 ⦿", url="https://t.me/cinema_flix_updates")
+            InlineKeyboardButton("⚡Check My Pm⚡", url=f"https://t.me/{temp.U_NAME}"),
+            InlineKeyboardButton("⚠️Main Channel⚠️", url="https://t.me/cinema_flix_updates")
         ]
     )
     if offset != "":
@@ -1376,7 +1376,7 @@ async def auto_filter(client, msg, spoll=False):
         )
     else:
         btn.append(
-            [InlineKeyboardButton(text="🔅 𝖭𝗈 𝖬𝗈𝗋𝖾 𝖯𝖺𝗀𝖾𝗌 𝖠𝗏𝖺𝗂𝗅𝖺𝖻𝗅𝖾 🔅", callback_data="pages")]
+            [InlineKeyboardButton(text="🚫 No More Next Pages 🚫", callback_data="pages")]
         )                   
     imdb = await get_poster(search) if IMDB else None
     TEMPLATE = IMDB_TEMPLATE
@@ -1415,7 +1415,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b>𝖧𝖾𝗒 {message.from_user.mention},👋</b>\n\n<b>𝖳𝗂𝗍𝗅𝖾 :</b> <b>{search}</b>\n<b>𝖳𝗈𝗍𝖺𝗅 𝖥𝗂𝗅𝖾 :</b> <b>{str(total_results)}</b>\n\n<b>{message.chat.title}</b>"
+        cap = f"<b>👋 Hey {message.from_user.mention},🎉</b>\n\n<b>📁 Movie Name :</b> <b><code>{search}</code></b>\n<b>🗃 Total File :</b> <b>{str(total_results)}</b>\n\n<b>{message.chat.title}</b>"
     if imdb and imdb.get('poster'):
         try:
             fmsg = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
