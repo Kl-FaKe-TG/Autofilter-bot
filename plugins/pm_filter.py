@@ -292,10 +292,10 @@ async def advantage_spoll_choker(bot, query):
                                                ]]
                        ),
                        parse_mode='html'
-              )  
+               )  
             
-            await asyncio.sleep(10)
-            await k.delete()
+             await asyncio.sleep(10)
+             await k.delete()
 
 
 
@@ -324,10 +324,9 @@ async def pm_spoll_tester(bot, query):
                                            ]]
                    ),
                    parse_mode='html'
-           )
-        
-         await asyncio.sleep(10)
-         await k.delete()
+            )
+          await asyncio.sleep(10)
+          await k.delete()
 
 
 
