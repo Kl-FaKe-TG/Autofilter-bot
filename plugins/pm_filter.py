@@ -4,7 +4,7 @@ from Script import script
 import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, SINGLE_BUTTON, PROTECT_CONTENT, \
-    SPELL_CHECK_REPLY, IMDB_TEMPLATE, IMDB_DELET_TIME, NO_RESULTS_MSG, START_MESSAGE, PMFILTER, G_FILTER, BUTTON_LOCK, BUTTON_LOCK_TEXT, NOR_IMG, SPELL_IMG
+    SPELL_CHECK_REPLY, IMDB_TEMPLATE, IMDB_DELET_TIME, NO_RESULTS_MSG, START_MESSAGE, PMFILTER, G_FILTER, BUTTON_LOCK, BUTTON_LOCK_TEXT, NOR_IMG, SPELL_IMG, MOVIE
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters, enums 
@@ -282,8 +282,18 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            button = [[InlineKeyboardButton("🔍 𝗖𝗛𝗘𝗖𝗞 𝗦𝗣𝗘𝗟𝗟𝗜𝗡𝗚 🔎", url=f"https://google.com/search?q={google}")]]
-            k = await query.message.edit(f'<b>𝖳𝗁𝗂𝗌 𝗆𝗈𝗏𝗂𝖾 𝗇𝗈𝗍 𝖿𝗈𝗎𝗇𝖽 𝗂𝗇 𝖣𝖺𝗍𝖺𝖡𝖺𝗌𝖾</b>', reply_markup=InlineKeyboardMarkup(button))
+            
+            k = await query.message.reply_photo(
+                       photo=(MOVIE),
+                       caption=(NOTFOUND),
+                       reply_markup=InlineKeyboardMarkup(  
+                                               [[   
+                                                  InlineKeyboardButton("Check in Spelling (Google)", url=f"https://google.com/search?q={google}")
+                                               ]]
+                       ),
+                       parse_mode='html'
+              )  
+            
             await asyncio.sleep(10)
             await k.delete()
 
@@ -303,10 +313,20 @@ async def pm_spoll_tester(bot, query):
         k = (movie, files, offset, total_results)
         await pm_AutoFilter(bot, query, k)
     else:
-        button = [[InlineKeyboardButton("🔍 𝗖𝗛𝗘𝗖𝗞 𝗦𝗣𝗘𝗟𝗟𝗜𝗡𝗚 🔎", url=f"https://google.com/search?q={google}")]]
-        k = await query.message.edit(f'<b>𝖳𝗁𝗂𝗌 𝗆𝗈𝗏𝗂𝖾 𝗇𝗈𝗍 𝖿𝗈𝗎𝗇𝖽 𝗂𝗇 𝖣𝖺𝗍𝖺𝖡𝖺𝗌𝖾</b>', reply_markup=InlineKeyboardMarkup(button))
-        await asyncio.sleep(10)
-        await k.delete()
+
+        k = await query.message.reply_photo(
+                   photo=(MOVIE),
+                   caption=(NOTFOUND),
+                   reply_markup=InlineKeyboardMarkup(  
+                                           [[   
+                                              InlineKeyboardButton("Check in Spelling (Google)", url=f"https://google.com/search?q={google}")
+                                           ]]
+                  ),
+                  parse_mode='html'
+         )
+        
+       await asyncio.sleep(10)
+       await k.delete()
         
 
 @Client.on_callback_query()
