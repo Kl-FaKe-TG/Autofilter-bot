@@ -322,12 +322,12 @@ async def pm_spoll_tester(bot, query):
                                            [[   
                                               InlineKeyboardButton("Check in Spelling (Google)", url=f"https://google.com/search?q={google}")
                                            ]]
-                  ),
-                  parse_mode='html'
-         )
+                   ),
+                   parse_mode='html'
+           )
         
-       await asyncio.sleep(10)
-       await k.delete()
+         await asyncio.sleep(10)
+         await k.delete()
 
 
 
