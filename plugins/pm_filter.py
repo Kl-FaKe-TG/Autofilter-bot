@@ -1353,8 +1353,6 @@ async def auto_filter(client, msg, spoll=False):
                         return
                     else:
                         return
-                else:
-                    return
             else:
                 return 
     else:
