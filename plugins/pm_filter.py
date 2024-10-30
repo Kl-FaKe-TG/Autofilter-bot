@@ -288,7 +288,7 @@ async def advantage_spoll_choker(bot, query):
                        caption=(NOTFOUND),
                        reply_markup=InlineKeyboardMarkup(  
                                                [[   
-                                                  InlineKeyboardButton("Check in Spelling (Google)", url=f"https://google.com/search?q={google}")
+                                                  InlineKeyboardButton("Check in Spelling (Google)", url="https://www.google.com/"),
                                                ]]
                        ),
                        parse_mode='html'
@@ -319,7 +319,7 @@ async def pm_spoll_tester(bot, query):
                    caption=(NOTFOUND),
                    reply_markup=InlineKeyboardMarkup(  
                                            [[   
-                                              InlineKeyboardButton("Check in Spelling (Google)", url=f"https://google.com/search?q={google}")
+                                              InlineKeyboardButton("Check in Spelling (Google)", url="https://www.google.com/")
                                            ]]
                    ),
                    parse_mode='html'
