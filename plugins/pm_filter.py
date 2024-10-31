@@ -282,20 +282,9 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            
-            k = await query.message.reply_photo(
-                       photo=(MOVIE),
-                       caption=(NOTFOUND),
-                       reply_markup=InlineKeyboardMarkup(  
-                                               [[   
-                                                  InlineKeyboardButton("Check in Spelling (Google)", url="https://www.google.com/"),
-                                               ]]
-                       ),
-                       parse_mode='html'
-               ) 
-            
-             await asyncio.sleep(10)
-             await k.delete()
+            k = await query.message.edit('<b>𝖳𝗁𝗂𝗌 𝗆𝗈𝗏𝗂𝖾 𝗇𝗈𝗍 𝖿𝗈𝗎𝗇𝖽 𝗂𝗇 𝖣𝖺𝗍𝖺𝖡𝖺𝗌𝖾</b>')
+            await asyncio.sleep(10)
+            await k.delete()
 
 
 @Client.on_callback_query(filters.regex(r"^pmspolling"))
@@ -313,18 +302,7 @@ async def pm_spoll_tester(bot, query):
         k = (movie, files, offset, total_results)
         await pm_AutoFilter(bot, query, k)
     else:
-
-        k = await query.message.reply_photo(
-                   photo=(MOVIE),
-                   caption=(NOTFOUND),
-                   reply_markup=InlineKeyboardMarkup(  
-                                           [[   
-                                              InlineKeyboardButton("Check in Spelling (Google)", url="https://www.google.com/")
-                                           ]]
-                   ),
-                   parse_mode='html'
-          )
-        
+        k = await query.message.edit('<b>𝖳𝗁𝗂𝗌 𝗆𝗈𝗏𝗂𝖾 𝗇𝗈𝗍 𝖿𝗈𝗎𝗇𝖽 𝗂𝗇 𝖣𝖺𝗍𝖺𝖡𝖺𝗌𝖾</b>')
         await asyncio.sleep(10)
         await k.delete()
 
