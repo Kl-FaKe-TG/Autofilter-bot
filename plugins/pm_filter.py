@@ -637,7 +637,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝖨𝗇𝗅𝗂𝗇𝖾 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
             InlineKeyboardButton('𝖬𝗈𝗏𝗂𝖾 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/cinema_flix_updates')
         ], [
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉', callback_data='help2'),
+            InlineKeyboardButton('𝖧𝖾𝗅𝗉', callback_data='help'),
             InlineKeyboardButton('𝖮𝗐𝗇𝖾𝗋 𝗂𝗇𝖿𝗈', callback_data='owr'),
             InlineKeyboardButton('𝖠𝖻𝗈𝗎𝗍', callback_data='about')
         ], [
@@ -646,6 +646,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=START_MESSAGE.format(user=query.from_user.mention, bot=temp.B_LINK),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+    elif query.data == "help":
+        buttons = [[
+            InlineKeyboardButton('𝖲𝗍𝖺𝗍𝗎𝗌', callback_data='stats')
+        ]] 
+        reply_markup = InlineKeyboardMarkup(buttons)             
+        await query.message.edit_text(                     
+            text=script.HELP_TXT.format(query.from_user.mention),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
