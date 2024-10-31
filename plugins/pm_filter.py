@@ -651,7 +651,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "help":
         buttons = [[
-            InlineKeyboardButton('𝖲𝗍𝖺𝗍𝗎𝗌', callback_data='stats')
+            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄', callback_data='start'),
+            InlineKeyboardButton('𝖢𝗅𝗈𝗌𝖾 ❎', callback_data='close_data')
         ]] 
         reply_markup = InlineKeyboardMarkup(buttons)             
         await query.message.edit_text(                     
@@ -661,8 +662,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
+            InlineKeyboardButton('♻️𝖲𝗍𝖺𝗍𝗎𝗌♻️', callback_data='stats'),
+            InlineKeyboardButton('💡𝖲𝗈𝗎𝗋𝖼𝖾💡', callback_data='source')
+            ],[
             InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄', callback_data='start'),
-            InlineKeyboardButton('💡𝖲𝗈𝗎𝗋𝖼𝖾💡', callback_data='source'),
             InlineKeyboardButton('𝖢𝗅𝗈𝗌𝖾 ❎', callback_data='close_data')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
@@ -684,7 +687,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "stats":
         buttons = [[
-            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='help2'),
+            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='about'),
             InlineKeyboardButton('𝖱𝖾𝖿𝗋𝖾𝗌𝗁 ♻️', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -703,7 +706,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "rfrsh":
         await query.answer("Fetching MongoDb DataBase")
         buttons = [[
-            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='help2'),
+            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='about'),
             InlineKeyboardButton('𝖱𝖾𝖿𝗋𝖾𝗌𝗁 ♻️', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -732,7 +735,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "stats":
         buttons = [[
-            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='help2'),
+            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='about'),
             InlineKeyboardButton('𝖱𝖾𝖿𝗋𝖾𝗌𝗁 ♻️', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -751,7 +754,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "rfrsh":
         await query.answer("Fetching MongoDb DataBase")
         buttons = [[
-            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='help2'),
+            InlineKeyboardButton('◀️ 𝖡𝖺𝖼𝗄 ', callback_data='about'),
             InlineKeyboardButton('𝖱𝖾𝖿𝗋𝖾𝗌𝗁 ♻️', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
