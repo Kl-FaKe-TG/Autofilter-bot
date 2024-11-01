@@ -14,15 +14,14 @@ class script(object):
 │
 ╰─────────────────────⍟</b>"""
 
-    STATUS_TXT = """<b>📊 𝖲𝗍𝖺𝗍𝗎𝗌 𝖡𝗈𝖺𝗋𝖽 📊</b>
-    
-<b> 📁 𝖳𝗈𝗍𝖺𝗅 𝖥𝗂𝗅𝖾𝗌: <code>{}</code></b>
-
-<b> 👥 𝖳𝗈𝗍𝖺𝗅 𝖬𝖾𝗆𝖻𝖾𝗋𝗌: <code>{}</code></b>
-
-<b> ♻️ 𝖳𝗈𝗍𝖺𝗅 𝖢𝗁𝖺𝗍𝗌: <code>{}</code></b>
-
-<b> 🗃 𝖴𝗌𝖾𝖽 𝖲𝗍𝗈𝗋𝖺𝗀𝖾: <code>{}</code> 𝖬𝖡</b>"""
+    STATUS_TXT = """<b>╭────[♻️Status Board♻️]────⍟
+│
+├<b>📁 Total Files: <code>{}</code></b>
+├<b>👥 Total Members: <code>{}</code></b>
+├<b>♻️ Total Chats: <code>{}</code></b>
+├<b>🗃 Used Storage: <code>{}</code> MB</b>
+│
+╰─────────────────────⍟</b>"""
     LOG_TEXT_G = """#AddNewGroup
     
 <b>⪼ 👥 𝖦𝗋𝗈𝗎𝗉 : {a}</b>
