@@ -22,12 +22,12 @@ BATCH_FILES = {}
 async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
-            InlineKeyboardButton('✗ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉𝗌 ✗', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            InlineKeyboardButton('➜ Add me to Your Group ➜', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
-            InlineKeyboardButton('𝖮𝗍𝗍 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/cinema_flix_updates'),
-            InlineKeyboardButton('𝖬𝗈𝗏𝗂𝖾 𝖦𝗋𝗈𝗎𝗉', url='https://t.me/+iEbhY7mM4oE1OTVl')
+            InlineKeyboardButton('📢Ott Updates', url='https://t.me/cinema_flix_updates'),
+            InlineKeyboardButton('Movie Group🎬', url='https://t.me/+iEbhY7mM4oE1OTVl')
             ],[
-            InlineKeyboardButton('〄 𝖢𝗁𝖾𝖼𝗄 𝖬𝗒 𝖯𝗆 〄', url=f"https://t.me/{temp.U_NAME}?start=help")
+            InlineKeyboardButton('〄 Check My Pm 〄', url=f"https://t.me/{temp.U_NAME}?start=help")
             ]]
         await message.reply(START_MESSAGE.format(user=message.from_user.mention if message.from_user else message.chat.title, bot=temp.B_LINK), reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)                    
         await asyncio.sleep(2) 
@@ -41,16 +41,12 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention, message.from_user.username, temp.U_NAME))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('✗ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉𝗌 ✗', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            InlineKeyboardButton('➜ Add me to Your Group ➜', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
-            InlineKeyboardButton('𝖨𝗇𝗅𝗂𝗇𝖾 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖬𝗈𝗏𝗂𝖾 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/cinema_flix_updates')
-        ], [
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉', callback_data='help2'),
-            InlineKeyboardButton('𝖮𝗐𝗇𝖾𝗋 𝗂𝗇𝖿𝗈', callback_data='owr'),
-            InlineKeyboardButton('𝖠𝖻𝗈𝗎𝗍', callback_data='about')
-        ], [
-            InlineKeyboardButton('🍾 𝖬𝗈𝗏𝗂𝖾 𝖱𝖾𝗊𝗎𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 🍾', url='https://t.me/+iEbhY7mM4oE1OTVl')
+            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('🛠️ Help', callback_data='help'),
+        ], [     
+            InlineKeyboardButton('✗ Close The Menu ✗', callback_data='closeme')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -73,7 +69,7 @@ async def start(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    "🔌 𝖩𝗈𝗂𝗇 𝖢𝗁𝖺𝗇𝗇𝖾𝗅 🔌", url=invite_link.invite_link
+                    "⚠️Join Main Channel⚠️", url=invite_link.invite_link
                 )
             ]
         ]
@@ -82,9 +78,9 @@ async def start(client, message):
             try:
                 kk, file_id = message.command[1].split("_", 1)
                 pre = 'checksubp' if kk == 'filep' else 'checksub' 
-                btn.append([InlineKeyboardButton(" 𝖳𝗋𝗒 𝖠𝗀𝖺𝗂𝗇 🔃", callback_data=f"{pre}#{file_id}")])
+                btn.append([InlineKeyboardButton(" 🔃Try Again🔃", callback_data=f"{pre}#{file_id}")])
             except (IndexError, ValueError):
-                btn.append([InlineKeyboardButton(" 𝖳𝗋𝗒 𝖠𝗀𝖺𝗂𝗇 🔃", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
+                btn.append([InlineKeyboardButton(" 🔃Try Again🔃", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
         await client.send_message(
             chat_id=message.from_user.id,
             text=FORCE_SUB_TEXT,
@@ -94,16 +90,12 @@ async def start(client, message):
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton('✗ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉𝗌 ✗', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            InlineKeyboardButton('➜ Add me to Your Group ➜', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
-            InlineKeyboardButton('𝖨𝗇𝗅𝗂𝗇𝖾 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖬𝗈𝗏𝗂𝖾 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/cinema_flix_updates')
-        ], [
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉', callback_data='help2'),
-            InlineKeyboardButton('𝖮𝗐𝗇𝖾𝗋 𝗂𝗇𝖿𝗈', callback_data='owr'),
-            InlineKeyboardButton('𝖠𝖻𝗈𝗎𝗍', callback_data='about')
-        ], [
-            InlineKeyboardButton('🍾 𝖬𝗈𝗏𝗂𝖾 𝖱𝖾𝗊𝗎𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 🍾', url='https://t.me/+iEbhY7mM4oE1OTVl')
+            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('🛠️ Help', callback_data='help'),
+        ], [     
+            InlineKeyboardButton('✗ Close The Menu ✗', callback_data='closeme')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_chat_action(enums.ChatAction.TYPING)
