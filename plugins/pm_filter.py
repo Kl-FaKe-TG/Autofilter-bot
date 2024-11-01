@@ -385,8 +385,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         keyboard = InlineKeyboardMarkup([
             [InlineKeyboardButton(f"{stat}", callback_data=f"{cb}:{group_id}"),
-             InlineKeyboardButton("𝙳𝙴𝙻𝙴𝚃𝙴", callback_data=f"deletecb:{group_id}")],
-            [InlineKeyboardButton("𝙱𝙰𝙲𝙺", callback_data="backcb")]
+             InlineKeyboardButton("🗑️Delete", callback_data=f"deletecb:{group_id}")],
+            [InlineKeyboardButton("⭅ Back", callback_data="backcb")]
         ])
 
         await query.message.edit_text(
@@ -394,7 +394,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=keyboard,
             parse_mode=enums.ParseMode.MARKDOWN
         )
-        return await query.answer('𝖯𝗅𝖾𝖺𝖾𝖾 𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
+        return await query.answer('𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
     elif "connectcb" in query.data:
         await query.answer()
 
@@ -415,7 +415,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
         else:
             await query.message.edit_text('Some error occurred!!', parse_mode="md")
-        return await query.answer('𝖯𝗅𝖾𝖺𝖾𝖾 𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
+        return await query.answer('𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
     elif "disconnect" in query.data:
         await query.answer()
 
@@ -456,7 +456,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f"Some error occurred!!",
                 parse_mode=enums.ParseMode.MARKDOWN
             )
-        return await query.answer('𝖯𝗅𝖾𝖺𝖾𝖾 𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
+        return await query.answer('𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
     elif query.data == "backcb":
         await query.answer()
 
@@ -467,7 +467,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_text(
                 "There are no active connections!! Connect to some groups first.",
             )
-            return await query.answer('𝖯𝗅𝖾𝖺𝖾𝖾 𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
+            return await query.answer('𝖲𝗁𝖺𝗋𝖾 𝖠𝗇𝖽 𝖲𝗎𝗉𝗉𝗈𝗋𝗍.💞')
         buttons = []
         for groupid in groupids:
             try:
@@ -622,13 +622,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "pages":
         await query.answer("🤨 Curiosity is a little more, isn't it? 😁", show_alert=True)
-    elif query.data == "minfo":
-        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴀᴠᴀᴛᴀʀ: ᴛʜᴇ ᴡᴀʏ ᴏғ ᴡᴀᴛᴇʀ\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)", show_alert=True)      
-
-    elif query.data == "info":
-        await query.answer("⚠ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ⚠\n\nᴀꜰᴛᴇʀ 10 ᴍɪɴᴜᴛᴇꜱ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴅᴇʟᴇᴛᴇᴅ\n\nɪꜰ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ꜱᴇᴇ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴍᴏᴠɪᴇ / sᴇʀɪᴇs ꜰɪʟᴇ, ʟᴏᴏᴋ ᴀᴛ ᴛʜᴇ ɴᴇxᴛ ᴘᴀɢᴇ", show_alert=True)
-
-
+    elif query.data == "closeme":
+        buttons = [[
+            InlineKeyboardButton('⚡ ᴄʟɪᴄᴋ ʜᴇʀᴇ ꜰᴏʀ ᴍᴏʀᴇ ʙᴜᴛᴛᴏɴs ⚡', callback_data='start')
+        ]]   
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=START_MESSAGE.format(user=query.from_user.mention, bot=temp.B_LINK),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML  
+        )
     elif query.data == "start":   
         buttons = [[
         ], [  
@@ -637,7 +640,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
             InlineKeyboardButton('🛠️ Help', callback_data='help'),
         ], [     
-            InlineKeyboardButton('✗ Close The Menu ✗', callback_data='close_data')
+            InlineKeyboardButton('✗ Close The Menu ✗', callback_data='closeme')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -663,7 +666,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons= [[
             InlineKeyboardButton('☎️ Help Contact Me ☎️', url="https://t.me/TG_x_filter")
             ],[
-            InlineKeyboardButton('⭅ Back', callback_data='start'),
+            InlineKeyboardButton('⭅ Back', callback_data='help'),
             InlineKeyboardButton('Close ✗', callback_data='close_data')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
