@@ -650,8 +650,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "help":
         buttons = [[
+            InlineKeyboardButton('❔How To Use Me❔', callback_data='howtoues')
+            ],[
             InlineKeyboardButton('⚠️About', callback_data='about'),
-            InlineKeyboardButton('🌈Status', callback_data='stats')
+            InlineKeyboardButton('Status📊', callback_data='stats')
             ],[
             InlineKeyboardButton('⭅ Back', callback_data='start'),
             InlineKeyboardButton('Close ✗', callback_data='close_data')
@@ -672,6 +674,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup = InlineKeyboardMarkup(buttons)        
         await query.message.edit_text(
             text=script.ABOUT_TXT.format(temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+    elif query.data == "howtoues":
+        buttons = [[
+            InlineKeyboardButton('⭅ Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.HOWTOUES_TXT,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
