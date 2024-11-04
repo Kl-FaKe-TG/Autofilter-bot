@@ -284,7 +284,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            one_button = InlineKeyboardMarkup([[InlineKeyboardButton("⭕️OTT UPDATES⭕️", url="https://t.me/cinema_flix_updates")]])
+            one_button = InlineKeyboardMarkup([[InlineKeyboardButton("🔍 Search in Google 🔎", url=f"https://google.com/search?q={google}")]])
             k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
             await asyncio.sleep(10)
             await k.delete()
@@ -305,7 +305,7 @@ async def pm_spoll_tester(bot, query):
         k = (movie, files, offset, total_results)
         await pm_AutoFilter(bot, query, k)
     else:
-        one_button = InlineKeyboardMarkup([[InlineKeyboardButton("⭕️OTT UPDATES⭕️", url="https://t.me/cinema_flix_updates")]])
+        one_button = InlineKeyboardMarkup([[InlineKeyboardButton("🔍 Search in Google 🔎", url=f"https://google.com/search?q={google}")]])
         k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
         await asyncio.sleep(10)
         await k.delete()
