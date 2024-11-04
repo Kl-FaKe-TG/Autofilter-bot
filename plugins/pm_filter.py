@@ -682,7 +682,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➜ Add me to Your Group ➜', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
             InlineKeyboardButton('⭅ Back', callback_data='help'),
-            InlineKeyboardButton('Contact 📞', url="https://t.me/TG_x_filter"
+            InlineKeyboardButton('Contact 📞', url="https://t.me/TG_x_filter")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
