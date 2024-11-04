@@ -666,7 +666,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('🔄 Share Me', url="https://t.me/TG_x_filter")
+            InlineKeyboardButton('👨‍💻Developer', url='tg://settings'),
+            InlineKeyboardButton('Editor🖥️', url='https://t.me/TG_x_filter')
             ],[
             InlineKeyboardButton('⭅ Back', callback_data='help'),
             InlineKeyboardButton('Close ✗', callback_data='close_data')
