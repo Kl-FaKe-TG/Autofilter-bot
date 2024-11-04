@@ -285,7 +285,7 @@ async def advantage_spoll_choker(bot, query):
             await auto_filter(bot, query, k)
         else:
             one_button = InlineKeyboardMarkup([[InlineKeyboardButton("⭕️OTT UPDATES⭕️", url="https://t.me/cinema_flix_updates")]])
-            k = await query.message.edit('<b>𝖳𝗁𝗂𝗌 𝗆𝗈𝗏𝗂𝖾 𝗇𝗈𝗍 𝖿𝗈𝗎𝗇𝖽 𝗂𝗇 𝖣𝖺𝗍𝖺𝖡𝖺𝗌𝖾</b>', reply_markup = one_button)
+            k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
             await asyncio.sleep(10)
             await k.delete()
 
@@ -306,7 +306,7 @@ async def pm_spoll_tester(bot, query):
         await pm_AutoFilter(bot, query, k)
     else:
         one_button = InlineKeyboardMarkup([[InlineKeyboardButton("⭕️OTT UPDATES⭕️", url="https://t.me/cinema_flix_updates")]])
-        k = await query.message.edit('<b>𝖳𝗁𝗂𝗌 𝗆𝗈𝗏𝗂𝖾 𝗇𝗈𝗍 𝖿𝗈𝗎𝗇𝖽 𝗂𝗇 𝖣𝖺𝗍𝖺𝖡𝖺𝗌𝖾</b>', reply_markup = one_button)
+        k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
         await asyncio.sleep(10)
         await k.delete()
 
