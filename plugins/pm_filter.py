@@ -28,6 +28,9 @@ PM_SPELL_CHECK = {}
 FILTER_MODE = {}
 G_MODE = {}
 
+#language setting..!!
+LANGUAGES = ["malayalam", "tamil", "english", "hindi", "telugu", "kannada"]
+
 @Client.on_message(filters.command('autofilter') & filters.group & admin_fliter)
 async def fil_mod(client, message): 
       mode_on = ["yes", "on", "true"]
@@ -227,7 +230,7 @@ async def next_page(bot, query):
     btn.insert(1,
         [
             InlineKeyboardButton("⚡Check My Pm⚡", url=f"https://t.me/{temp.U_NAME}"),
-            InlineKeyboardButton("🔻𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄𝐒🔻", callback_data=f"languages#{key}")
+            InlineKeyboardButton("🔻𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄𝐒🔻", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
         ]
     )    
 
