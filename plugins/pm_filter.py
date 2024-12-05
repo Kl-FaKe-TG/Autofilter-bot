@@ -267,6 +267,52 @@ async def next_page(bot, query):
         pass
     await query.answer()
 
+
+@Client.on_callback_query(filters.regex(r"^spolling"))
+async def advantage_spoll_choker(bot, query):
+    _, user, movie_ = query.data.split('#')
+    if int(user) != 0 and query.from_user.id != int(user):
+        return await query.answer("okDa", show_alert=True)
+    if movie_ == "close_spellcheck":
+        return await query.message.delete()
+    movies = SPELL_CHECK.get(query.message.reply_to_message.id)
+    if not movies:
+        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
+    movie = movies[(int(movie_))]
+    await query.answer('Checking for Movie in database...')
+    k = await manual_filters(bot, query.message, text=movie)
+    if k == False:
+        files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
+        if files:
+            k = (movie, files, offset, total_results)
+            await auto_filter(bot, query, k)
+        else:
+            one_button = InlineKeyboardMarkup([[InlineKeyboardButton("🔍 Search in Google 🔎", url="https://www.google.com")]])
+            k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
+            await asyncio.sleep(99)
+            await k.delete()
+
+
+@Client.on_callback_query(filters.regex(r"^pmspolling"))
+async def pm_spoll_tester(bot, query):
+    _, user, movie_ = query.data.split('#')
+    if movie_ == "close_spellcheck":
+        return await query.message.delete()
+    movies = PM_SPELL_CHECK.get(query.message.reply_to_message.id)
+    if not movies:
+        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
+    movie = movies[(int(movie_))]
+    await query.answer('Checking for Movie in database...')
+    files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
+    if files:
+        k = (movie, files, offset, total_results)
+        await pm_AutoFilter(bot, query, k)
+    else:
+        one_button = InlineKeyboardMarkup([[InlineKeyboardButton("🔍 Search in Google 🔎", url="https://www.google.com")]])
+        k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
+        await asyncio.sleep(99)
+        await k.delete()
+
 #Language 
 
 
@@ -414,51 +460,6 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
         pass
     await query.answer()
 
-
-@Client.on_callback_query(filters.regex(r"^spolling"))
-async def advantage_spoll_choker(bot, query):
-    _, user, movie_ = query.data.split('#')
-    if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("okDa", show_alert=True)
-    if movie_ == "close_spellcheck":
-        return await query.message.delete()
-    movies = SPELL_CHECK.get(query.message.reply_to_message.id)
-    if not movies:
-        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
-    movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
-    k = await manual_filters(bot, query.message, text=movie)
-    if k == False:
-        files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
-        if files:
-            k = (movie, files, offset, total_results)
-            await auto_filter(bot, query, k)
-        else:
-            one_button = InlineKeyboardMarkup([[InlineKeyboardButton("🔍 Search in Google 🔎", url="https://www.google.com")]])
-            k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
-            await asyncio.sleep(99)
-            await k.delete()
-
-
-@Client.on_callback_query(filters.regex(r"^pmspolling"))
-async def pm_spoll_tester(bot, query):
-    _, user, movie_ = query.data.split('#')
-    if movie_ == "close_spellcheck":
-        return await query.message.delete()
-    movies = PM_SPELL_CHECK.get(query.message.reply_to_message.id)
-    if not movies:
-        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
-    movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
-    files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
-    if files:
-        k = (movie, files, offset, total_results)
-        await pm_AutoFilter(bot, query, k)
-    else:
-        one_button = InlineKeyboardMarkup([[InlineKeyboardButton("🔍 Search in Google 🔎", url="https://www.google.com")]])
-        k = await query.message.edit('<b>👋Hey {message.from_user.mention}</b>\n\nHere is movie request format👇\n\n• Go to Google\n\n• Type the movie name you want\n\n• Copy the movie name with correct spelling\n\n• Then paste the movie name here in this group\n\n<b>🚫 Dont Spam 🚫</b>', reply_markup = one_button)
-        await asyncio.sleep(99)
-        await k.delete()
 
 
 @Client.on_callback_query()
