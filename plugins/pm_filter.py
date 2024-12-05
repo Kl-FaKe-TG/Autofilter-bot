@@ -230,7 +230,7 @@ async def next_page(bot, query):
     btn.insert(1,
         [
             InlineKeyboardButton("⚡Check My Pm⚡", url=f"https://t.me/{temp.U_NAME}"),
-            InlineKeyboardButton("🔻𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄𝐒🔻", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
+            InlineKeyboardButton("🔻𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄𝐒🔻", callback_data=f"languages#{key}")
         ]
     )    
 
