@@ -227,6 +227,153 @@ async def next_page(bot, query):
     btn.insert(1,
         [
             InlineKeyboardButton("⚡Check My Pm⚡", url=f"https://t.me/{temp.U_NAME}"),
+            InlineKeyboardButton("🔻𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄𝐒🔻", callback_data=f"languages#{key}")
+        ]
+    )    
+
+    if 0 < offset <= 10:
+        off_set = 0
+    elif offset == 0:
+        off_set = None
+    else:
+        off_set = offset - 10
+    if n_offset == 0:
+        btn.append(
+            [InlineKeyboardButton("⤶ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"),
+             InlineKeyboardButton(f"◽ {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)} ◽",
+                                  callback_data="pages")]
+        )
+    elif off_set is None:
+        btn.append(
+            [InlineKeyboardButton("◽ᴩᴀɢᴇꜱ", callback_data="pages"), 
+             InlineKeyboardButton(f"◽ {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)} ◽", callback_data="pages"),
+             InlineKeyboardButton("ɴᴇxᴛ⤷", callback_data=f"next_{req}_{key}_{n_offset}")])
+    else:
+        btn.append(
+            [
+                InlineKeyboardButton("⤶ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"),
+                InlineKeyboardButton(f"◽ {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)} ◽", callback_data="pages"),
+                InlineKeyboardButton("ɴᴇxᴛ⤷", callback_data=f"next_{req}_{key}_{n_offset}")
+            ],
+        )
+    try:
+        await query.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+    except MessageNotModified:
+        pass
+    await query.answer()
+
+#Language 
+
+
+
+@Client.on_callback_query(filters.regex(r"^languages#"))
+async def languages_cb_handler(client: Client, query: CallbackQuery):
+
+    try:
+        if int(query.from_user.id) not in [query.message.reply_to_message.from_user.id, 0]:
+            return await query.answer(
+                f"⚠️ ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
+                show_alert=True,
+            )
+    except:
+        pass
+    _, key = query.data.split("#")
+    search = FRESH.get(key)
+    search = search.replace(' ', '_')
+    btn = []
+    for i in range(0, len(LANGUAGES)-1, 2):
+        btn.append([
+            InlineKeyboardButton(
+                text=LANGUAGES[i].title(),
+                callback_data=f"fl#{LANGUAGES[i].lower()}#{key}"
+            ),
+            InlineKeyboardButton(
+                text=LANGUAGES[i+1].title(),
+                callback_data=f"fl#{LANGUAGES[i+1].lower()}#{key}"
+            ),
+        ])
+
+    btn.insert(
+        0,
+        [
+            InlineKeyboardButton(
+                text="👇 𝖲𝖾𝗅𝖾𝖼𝗍 𝖸𝗈𝗎𝗋 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾𝗌 👇", callback_data="ident"
+            )
+        ],
+    )
+    req = query.from_user.id
+    offset = 0
+    btn.append([InlineKeyboardButton(text="↭ ʙᴀᴄᴋ ᴛᴏ ꜰɪʟᴇs ​↭", callback_data=f"fl#homepage#{key}")])
+
+    await query.edit_message_reply_markup(InlineKeyboardMarkup(btn))
+
+
+@Client.on_callback_query(filters.regex(r"^fl#"))
+async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
+    _, lang, key = query.data.split("#")
+    curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
+    search = FRESH.get(key)
+    search = search.replace("_", " ")
+    baal = lang in search
+    if baal:
+        search = search.replace(lang, "")
+    else:
+        search = search
+    req = query.from_user.id
+    chat_id = query.message.chat.id
+    message = query.message
+    try:
+        if int(req) not in [query.message.reply_to_message.from_user.id, 0]:
+            return await query.answer(
+                f"⚠️ ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
+                show_alert=True,
+            )
+    except:
+        pass
+    if lang != "homepage":
+        search = f"{search} {lang}" 
+    BUTTONS[key] = search
+
+    files, offset, total_results = await get_search_results(chat_id, search, offset=0, filter=True)
+    if not files:
+        await query.answer("🚫 𝗡𝗼 𝗙𝗶𝗹𝗲 𝗪𝗲𝗿𝗲 𝗙𝗼𝘂𝗻𝗱 🚫", show_alert=1)
+        return
+    temp.GETALL[key] = files
+    settings = await get_settings(message.chat.id)
+    pre = 'filep' if settings['file_secure'] else 'file'
+    if settings["button"]:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"◽ [{get_size(file.file_size)}] ◾ {file.file_name}", callback_data=f'files#{nxreq}#{file.file_id}'
+                ),
+            ]
+            for file in files
+        ]
+    else:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"◾ {file.file_name}", callback_data=f'files#{nxreq}#{file.file_id}'
+                ),
+                InlineKeyboardButton(
+                    text=f"◽ {get_size(file.file_size)}",
+                    callback_data=f'files#{nxreq}#{file.file_id}',
+                ),
+            ]
+            for file in files
+        ]
+        
+    btn.insert(0, 
+        [
+            InlineKeyboardButton(f'🌟 {search} 🌟', 'dupe')
+        ]
+    )
+    btn.insert(1,
+        [
+            InlineKeyboardButton("⚡Check My Pm⚡", url=f"https://t.me/{temp.U_NAME}"),
             InlineKeyboardButton("⚠️Main Channel⚠️", url="https://t.me/cinema_flix_updates")
         ]
     )    
