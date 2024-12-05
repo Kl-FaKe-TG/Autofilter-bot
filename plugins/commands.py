@@ -84,7 +84,7 @@ async def start(client, message):
         await client.send_photo(
             photo=FORCE_IMG,
             chat_id=message.from_user.id,
-            text=FORCE_SUB_TEXT,
+            caption=FORCE_SUB_TEXT,
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.DEFAULT
             )
