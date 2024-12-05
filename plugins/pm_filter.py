@@ -314,9 +314,6 @@ async def pm_spoll_tester(bot, query):
         await k.delete()
 
 #Language 
-
-
-
 @Client.on_callback_query(filters.regex(r"^languages#"))
 async def languages_cb_handler(client: Client, query: CallbackQuery):
 
@@ -459,7 +456,6 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
     except MessageNotModified:
         pass
     await query.answer()
-
 
 
 @Client.on_callback_query()
